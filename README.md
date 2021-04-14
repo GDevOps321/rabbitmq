@@ -4,29 +4,15 @@ RabbitMQ is a messaging Queue which is used by some components of the applicatio
 
 ## Manual Installation 
 
-1. Erlang is a dependency which is needed for RabbitMQ.
+1. Install RabbtiMQ 
 
 ```
-# yum install https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm -y 
-```
-
-2. Setup YUM repositories for RabbitMQ.
-
-```
-# curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
-```
-
-3. Install RabbitMQ 
-
-```
-# yum install rabbitmq-server -y 
-```
-
-4. Start RabbitMQ 
-
-```
-# systemctl enable rabbitmq-server 
-# systemctl start rabbitmq-server 
+# apt update
+# curl -fsSL https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc | apt-key add -
+# apt install apt-transport-https -y
+# echo -e "deb https://dl.bintray.com/rabbitmq-erlang/debian focal erlang\ndeb https://dl.bintray.com/rabbitmq/debian bionic main" > /etc/apt/sources.list.d/bintray.rabbitmq.list
+# apt update -y 
+# apt install rabbitmq-server -y --fix-missing
 ```
 
 RabbitMQ comes with a default username / password as `guest`/`guest`. But this user cannot be used to connect. Hence we need to create one user for the application.
